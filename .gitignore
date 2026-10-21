@@ -1,0 +1,59 @@
+# ============================================================
+# NASA Space Apps 2026 — root .gitignore
+# ============================================================
+
+# ----- Python -----------------------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.so
+
+# ----- Node / npm -------------------------------------------
+node_modules/
+.npm/
+
+# ----- Vite / build output ----------------------------------
+app/dist/
+dist/
+*.tsbuildinfo
+
+# ----- Data (large downloads, rebuilt by pipeline) ----------
+data/raw/
+data/interim/
+data/state/nrt_state.npz
+
+# ----- Media / large binaries --------------------------------
+media/frames/
+media/frames_globe/
+media/textures/
+media/*.mp4
+*.blend1
+
+# ----- Archive raw data -------------------------------------
+archive/v1-peru/raw-firms-peru/
+
+# ----- OS / editor ------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/settings.json
+.idea/
+
+# ----- Secrets / credentials --------------------------------
+.env
+.env.*
+!.env.example
+secrets.json
+config/secrets*.yaml

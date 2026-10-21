@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FireCal Perú</title>
+<meta name="description" content="Calendario armonizado de quemas en Perú (MODIS + VIIRS, NASA FIRMS, 2000–2025).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="logo" aria-hidden="true">🔥</span>
+    <div>
+      <h1>FireCal Perú</h1>
+      <p>Calendario armonizado de quemas · MODIS + VIIRS · NASA FIRMS 2000–2025</p>
+    </div>
+  </div>
+  <div class="mode" role="group" aria-label="Modo de serie">
+    <button data-mode="harm" class="on">Armonizado</button>
+    <button data-mode="naive">Crudo (MODIS→VIIRS empalmado)</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="mapcol">
+    <div class="tools">
+      <button id="btnAll">Todo Perú</button>
+      <button id="btnDraw">▭ Dibujar área</button>
+      <span class="sep"></span>
+      <span class="lbl">Casos:</span>
+      <button class="preset" data-preset="tambopata">Amazonía · Tambopata</button>
+      <button class="preset" data-preset="andes">Andes norte · 2024</button>
+      <button class="preset" data-preset="cana">Costa norte · caña</button>
+    </div>
+    <div id="map"></div>
+    <div class="legend">
+      <span>Celda-días con fuego / año (armonizado, 0.25°)</span>
+      <div class="ramp"></div>
+      <div class="ticks"><span>1</span><span>10</span><span>100</span><span>300+</span></div>
+    </div>
+    <p class="hint">Haz clic en un departamento, dibuja un rectángulo o elige un caso.</p>
+  </section>
+
+  <section class="panel">
+    <div class="selhead">
+      <div>
+        <div class="eyebrow">Área seleccionada</div>
+        <h2 id="selName">Todo Perú</h2>
+      </div>
+      <div class="selmeta" id="selMeta"></div>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="card">
+      <div class="cardhead">
+        <h3>Calendario de quema</h3>
+        <div class="seg" role="group" aria-label="Color del calendario">
+          <button data-cal="count" class="on">Intensidad</button>
+          <button data-cal="z">Anomalía (z)</button>
+        </div>
+      </div>
+      <div id="calendar" class="chart tall"></div>
+      <p class="note">Cada celda es un mes. Haz clic en una para comparar ese año con lo normal.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="cardhead"><h3>Serie anual</h3></div>
+        <div id="annual" class="chart"></div>
+        <p class="note" id="jumpNote"></p>
+      </div>
+      <div class="card">
+        <div class="cardhead"><h3>Temporada: <span id="yearLbl">2024</span> frente a lo normal</h3></div>
+        <div id="clim" class="chart"></div>
+        <p class="note">Banda: percentiles 10–90 de 2001–2025 (serie armonizada).</p>
+      </div>
+    </div>
+
+    <details class="card method" id="method">
+      <summary><h3>Método y validación</h3></summary>
+      <div class="methodbody">
+        <ol>
+          <li><b>Métrica común:</b> MODIS (1 km) y VIIRS (375 m) se convierten a <i>celda-día con fuego</i> en una grilla de 0.1°. Se cuenta si la celda ardió ese día, no cuántos píxeles. Así se atenúa la diferencia de resolución.</li>
+          <li><b>Filtros:</b> solo fuegos de vegetación (<code>type=0</code>), MODIS con confianza ≥ 30 % y VIIRS con confianza nominal o alta.</li>
+          <li><b>Calibración</b> en el periodo en que ambos sensores coinciden (feb 2012 – dic 2025): k = ΣVIIRS / ΣMODIS por departamento y mes del año. Si un departamento tiene pocos datos, su k se acerca al de su macro-región (costa, sierra o selva), y la macro-región al nacional.</li>
+          <li><b>Retroproyección:</b> MODIS 2000–2012 × k da una serie continua "equivalente VIIRS" de 25 años. La banda es el intervalo bootstrap 5–95 % de k.</li>
+          <li><b>Validación:</b> se excluye un año a la vez, se calibra con los demás y se predice el año excluido.</li>
+        </ol>
+        <div class="grid2">
+          <div id="valid" class="chart short"></div>
+          <div id="ratio" class="chart short"></div>
+        </div>
+        <p class="note" id="validNote"></p>
+        <p class="note">Fuente: NASA FIRMS (MODIS C6.1 y VIIRS S-NPP 375 m, archivos anuales por país). Límites departamentales: INEI vía <code>juaneladio/peru-geojson</code>.</p>
+      </div>
+    </details>
+  </section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

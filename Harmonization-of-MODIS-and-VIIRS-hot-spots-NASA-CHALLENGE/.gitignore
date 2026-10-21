@@ -1,0 +1,16 @@
+# data that is downloaded or rebuilt by the pipeline
+data/raw/
+data/interim/
+media/frames/
+*.blend1
+# python / node
+.venv/
+__pycache__/
+.pytest_cache/
+app/node_modules/
+app/dist/
+app/*.tsbuildinfo
+archive/v1-peru/raw-firms-peru/
+media/textures/
+media/*.mp4
+media/frames_globe/

@@ -1,0 +1,171 @@
+{
+ "nivel": "departamento \u00d7 mes, a\u00f1o excluido (leave-one-year-out 2012\u20132025)",
+ "n": 3967,
+ "metodos": {
+  "crudo": {
+   "r2_log": -0.024,
+   "mae": 88.5,
+   "sesgo_pct": -74.4
+  },
+  "k_nacional": {
+   "r2_log": 0.662,
+   "mae": 35.4,
+   "sesgo_pct": 0.1
+  },
+  "k_mes": {
+   "r2_log": 0.674,
+   "mae": 31.7,
+   "sesgo_pct": 0.3
+  },
+  "k_dep_mes": {
+   "r2_log": 0.697,
+   "mae": 26.0,
+   "sesgo_pct": 0.3
+  }
+ },
+ "anual_nacional": [
+  {
+   "year": 2012,
+   "viirs": 34725,
+   "pred": 38646,
+   "modis": 9994
+  },
+  {
+   "year": 2013,
+   "viirs": 28975,
+   "pred": 27319,
+   "modis": 7036
+  },
+  {
+   "year": 2014,
+   "viirs": 26821,
+   "pred": 24782,
+   "modis": 6421
+  },
+  {
+   "year": 2015,
+   "viirs": 32678,
+   "pred": 32537,
+   "modis": 8487
+  },
+  {
+   "year": 2016,
+   "viirs": 40508,
+   "pred": 45698,
+   "modis": 11103
+  },
+  {
+   "year": 2017,
+   "viirs": 27493,
+   "pred": 26585,
+   "modis": 6673
+  },
+  {
+   "year": 2018,
+   "viirs": 29499,
+   "pred": 29212,
+   "modis": 7564
+  },
+  {
+   "year": 2019,
+   "viirs": 33228,
+   "pred": 34633,
+   "modis": 9281
+  },
+  {
+   "year": 2020,
+   "viirs": 44530,
+   "pred": 41232,
+   "modis": 10203
+  },
+  {
+   "year": 2021,
+   "viirs": 30837,
+   "pred": 29486,
+   "modis": 7646
+  },
+  {
+   "year": 2022,
+   "viirs": 38686,
+   "pred": 42390,
+   "modis": 10587
+  },
+  {
+   "year": 2023,
+   "viirs": 36602,
+   "pred": 35065,
+   "modis": 9088
+  },
+  {
+   "year": 2024,
+   "viirs": 41225,
+   "pred": 44524,
+   "modis": 11401
+  },
+  {
+   "year": 2025,
+   "viirs": 25712,
+   "pred": 20959,
+   "modis": 5171
+  }
+ ],
+ "error_anual_pct": 7.0,
+ "ratio_por_anio": [
+  {
+   "year": 2012,
+   "ratio": 3.475
+  },
+  {
+   "year": 2013,
+   "ratio": 4.118
+  },
+  {
+   "year": 2014,
+   "ratio": 4.177
+  },
+  {
+   "year": 2015,
+   "ratio": 3.85
+  },
+  {
+   "year": 2016,
+   "ratio": 3.648
+  },
+  {
+   "year": 2017,
+   "ratio": 4.12
+  },
+  {
+   "year": 2018,
+   "ratio": 3.9
+  },
+  {
+   "year": 2019,
+   "ratio": 3.58
+  },
+  {
+   "year": 2020,
+   "ratio": 4.364
+  },
+  {
+   "year": 2021,
+   "ratio": 4.033
+  },
+  {
+   "year": 2022,
+   "ratio": 3.654
+  },
+  {
+   "year": 2023,
+   "ratio": 4.028
+  },
+  {
+   "year": 2024,
+   "ratio": 3.616
+  },
+  {
+   "year": 2025,
+   "ratio": 4.972
+  }
+ ]
+}
